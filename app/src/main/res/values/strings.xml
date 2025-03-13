@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">QuickCV</string>
     <string name="name_of_app">QuickCV</string>
+    <string name="Certification">Certifications</string>
+    <string name="PersonalDetailsButton">Personal Details</string>
+    <string name="SummaryButton">Summary</string>
+    <string name="EducationButton">Education</string>
+    <string name="ProfilePicButton">Profile Picture</string>
+    <string name="ReferencesButton">References</string>
+    <string name="CertificationButton">Certifications</string>
+    <string name="ExperienceButton">Experience</string>
 </resources>
