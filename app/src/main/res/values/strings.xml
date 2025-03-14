@@ -9,4 +9,6 @@
     <string name="ReferencesButton">References</string>
     <string name="CertificationButton">Certifications</string>
     <string name="ExperienceButton">Experience</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="save_button">Save</string>
 </resources>
