@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".Education">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/EducationButton">
+    </TextView>
+
+    <!-- Institution Name -->
+    <EditText
+        android:id="@+id/etInstitution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="Institution Name"
+        android:background="@drawable/et_border"
+        android:padding="10dp"/>
+
+    <!-- Degree -->
+    <EditText
+        android:id="@+id/etDiscipline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Discipline"
+        android:background="@drawable/et_border"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Start Year -->
+    <EditText
+        android:id="@+id/etStartYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start Year"
+        android:inputType="date"
+        android:background="@drawable/et_border"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"/>
+
+    <!-- End Year -->
+    <EditText
+        android:id="@+id/etEndYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="End Year"
+        android:inputType="date"
+        android:background="@drawable/et_border"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"/>
+
+    <!-- GPA -->
+    <EditText
+        android:id="@+id/etCGPA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CGPA"
+        android:inputType="numberDecimal"
+        android:background="@drawable/et_border"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel_button"
+            android:layout_marginRight="20dp"
+            >
+        </Button>
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_button"
+            android:layout_marginLeft="20dp"
+            >
+        </Button>
+
+    </LinearLayout>
+
+</LinearLayout>
