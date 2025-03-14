@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -12,8 +14,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-//    hooks
+    private static final int PERSONAL_DETAILS_REQUEST = 1;
+
+    //    hooks
     private Button btnProfilePicture, btnPersonalDetails, btnSummary, btnEducation, btnExperience, btnCertifications, btnReferences, btnViewCV;
+
+    // Variables to store user data
+    private String name, email, phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnPersonalDetails.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, PersonalDetails.class);
-            startActivity(intent);
+            personalDetailsLauncher.launch(intent);
         });
 
         btnSummary.setOnClickListener(v -> {
@@ -68,7 +75,21 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, PersonalDetails.class);
             startActivity(intent);
         });
+
     }
+
+//    Handling/Capture results
+
+    private final ActivityResultLauncher<Intent> personalDetailsLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Intent data = result.getData();
+                    name = data.getStringExtra("name");
+                    email = data.getStringExtra("email");
+                    phone = data.getStringExtra("phone");
+                }
+            });
+
 
     private void init(){
         btnProfilePicture = findViewById(R.id.btnProfilePicture);
