@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".References">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/EducationButton">
+    </TextView>
+
+    <!-- Reference Name -->
+    <EditText
+        android:id="@+id/etReferenceName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Reference Name"
+        android:inputType="text" />
+
+    <!-- Designation -->
+    <EditText
+        android:id="@+id/etDesignation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Designation"
+        android:inputType="text"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Organization -->
+    <EditText
+        android:id="@+id/etOrganization"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Organization"
+        android:inputType="text"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Contact Information -->
+    <EditText
+        android:id="@+id/etRefPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone Number"
+        android:inputType="number"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Relationship Type using RadioGroup -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Relationship Type:"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupRelationship"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rbManager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manager"/>
+
+        <RadioButton
+            android:id="@+id/rbColleague"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Colleague"/>
+
+        <RadioButton
+            android:id="@+id/rbProfessor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Professor"/>
+    </RadioGroup>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_marginRight="20dp"/>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+
+</LinearLayout>

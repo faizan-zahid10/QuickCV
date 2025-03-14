@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">QuickCV</string>
     <string name="name_of_app">QuickCV</string>
-    <string name="Certification">Certifications</string>
     <string name="PersonalDetailsButton">Personal Details</string>
     <string name="SummaryButton">Summary</string>
     <string name="EducationButton">Education</string>
@@ -11,4 +10,5 @@
     <string name="ExperienceButton">Experience</string>
     <string name="cancel_button">Cancel</string>
     <string name="save_button">Save</string>
+    <string name="ViewCvButton">View CV</string>
 </resources>
