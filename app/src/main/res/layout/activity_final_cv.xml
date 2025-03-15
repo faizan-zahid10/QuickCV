@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:id="@+id/main"
+    tools:context=".FinalCV">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your CV"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:paddingBottom="16dp"/>
+
+        <!-- Personal Details -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Personal Details"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"/>
+        <TextView android:id="@+id/tvName" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvEmail" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvPhone" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <!-- Summary -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Summary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"/>
+        <TextView android:id="@+id/tvSummary" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <!-- Education -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Education"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"/>
+        <TextView android:id="@+id/tvInstitution" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvDiscipline" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvEducationYears" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvCGPA" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <!-- Experience -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Experience"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"/>
+        <TextView android:id="@+id/tvJobTitle" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvCompanyName" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvEmploymentType" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvExperienceYears" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvJobDescription" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <!-- Certifications -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Certifications"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"/>
+        <TextView android:id="@+id/tvCertificationName" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvIssuer" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvIssueDate" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvExpirationDate" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <!-- References -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="References"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"/>
+        <TextView android:id="@+id/tvReferenceName" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvReferenceDesignation" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvReferenceOrganization" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvReferencePhone" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tvRelationshipType" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnShareCV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Share CV"
+            android:layout_marginTop="16dp"/>
+
+
+    </LinearLayout>
+</ScrollView>
+

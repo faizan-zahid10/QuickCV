@@ -20,8 +20,23 @@ public class MainActivity extends AppCompatActivity {
     //    hooks
     private Button btnProfilePicture, btnPersonalDetails, btnSummary, btnEducation, btnExperience, btnCertifications, btnReferences, btnViewCV;
 
-    // Variables to store user data
+    // Personal Details
     private String name, email, phone;
+
+    // Summary
+    private String summary;
+
+    // Education
+    private String institution, discipline, startYear, endYear, cgpa;
+
+    // Experience
+    private String jobTitle, companyName, employmentType, experienceLevel, startDate, endDate, jobDescription;
+
+    // Certifications
+    private String certificationName, issuer, issueDate, expirationDate;
+
+    // References
+    private String referenceName, designation, organization, referencePhone, relationshipType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +87,37 @@ public class MainActivity extends AppCompatActivity {
             referencesLauncher.launch(intent);
         });
 
+//       Final cv page displayed on this "View Cv" button click
         btnViewCV.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, PersonalDetails.class);
+            Intent intent = new Intent(MainActivity.this, FinalCV.class);
+
+            // Passing all collected data
+            intent.putExtra("name", name);
+            intent.putExtra("email", email);
+            intent.putExtra("phone", phone);
+            intent.putExtra("summary", summary);
+            intent.putExtra("institution", institution);
+            intent.putExtra("discipline", discipline);
+            intent.putExtra("startYear", startYear);
+            intent.putExtra("endYear", endYear);
+            intent.putExtra("cgpa", cgpa);
+            intent.putExtra("jobTitle", jobTitle);
+            intent.putExtra("companyName", companyName);
+            intent.putExtra("employmentType", employmentType);
+            intent.putExtra("experienceLevel", experienceLevel);
+            intent.putExtra("startDate", startDate);
+            intent.putExtra("endDate", endDate);
+            intent.putExtra("jobDescription", jobDescription);
+            intent.putExtra("certificationName", certificationName);
+            intent.putExtra("issuer", issuer);
+            intent.putExtra("issueDate", issueDate);
+            intent.putExtra("expirationDate", expirationDate);
+            intent.putExtra("referenceName", referenceName);
+            intent.putExtra("designation", designation);
+            intent.putExtra("organization", organization);
+            intent.putExtra("referencePhone", referencePhone);
+            intent.putExtra("relationshipType", relationshipType);
+
             startActivity(intent);
         });
 
@@ -97,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
     private final ActivityResultLauncher<Intent> summaryLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    String summary = result.getData().getStringExtra("summary");
+                    summary = result.getData().getStringExtra("summary");
                 }
             });
 
@@ -107,11 +151,11 @@ public class MainActivity extends AppCompatActivity {
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                     Intent data = result.getData();
-                    String institution = data.getStringExtra("institution");
-                    String discipline = data.getStringExtra("discipline");
-                    String startYear = data.getStringExtra("startYear");
-                    String endYear = data.getStringExtra("endYear");
-                    String cgpa = data.getStringExtra("cgpa");
+                    institution = data.getStringExtra("institution");
+                    discipline = data.getStringExtra("discipline");
+                    startYear = data.getStringExtra("startYear");
+                    endYear = data.getStringExtra("endYear");
+                    cgpa = data.getStringExtra("cgpa");
                 }
             });
 
@@ -121,13 +165,13 @@ public class MainActivity extends AppCompatActivity {
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                     Intent data = result.getData();
-                    String jobTitle = data.getStringExtra("jobTitle");
-                    String companyName = data.getStringExtra("companyName");
-                    String employmentType = data.getStringExtra("employmentType");
-                    String experienceLevel = data.getStringExtra("experienceLevel");
-                    String startDate = data.getStringExtra("startDate");
-                    String endDate = data.getStringExtra("endDate");
-                    String jobDescription = data.getStringExtra("jobDescription");
+                    jobTitle = data.getStringExtra("jobTitle");
+                    companyName = data.getStringExtra("companyName");
+                    employmentType = data.getStringExtra("employmentType");
+                    experienceLevel = data.getStringExtra("experienceLevel");
+                    startDate = data.getStringExtra("startDate");
+                    endDate = data.getStringExtra("endDate");
+                    jobDescription = data.getStringExtra("jobDescription");
 
                 }
             });
@@ -138,10 +182,10 @@ public class MainActivity extends AppCompatActivity {
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                     Intent data = result.getData();
-                    String certificationName = data.getStringExtra("certificationName");
-                    String issuer = data.getStringExtra("issuer");
-                    String issueDate = data.getStringExtra("issueDate");
-                    String expirationDate = data.getStringExtra("expirationDate");
+                    certificationName = data.getStringExtra("certificationName");
+                    issuer = data.getStringExtra("issuer");
+                    issueDate = data.getStringExtra("issueDate");
+                    expirationDate = data.getStringExtra("expirationDate");
                 }
             });
 
@@ -151,11 +195,11 @@ public class MainActivity extends AppCompatActivity {
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                     Intent data = result.getData();
-                    String referenceName = data.getStringExtra("referenceName");
-                    String designation = data.getStringExtra("designation");
-                    String organization = data.getStringExtra("organization");
-                    String phone = data.getStringExtra("phone");
-                    String relationshipType = data.getStringExtra("relationshipType");
+                    referenceName = data.getStringExtra("referenceName");
+                    designation = data.getStringExtra("designation");
+                    organization = data.getStringExtra("organization");
+                    referencePhone = data.getStringExtra("phone");
+                    relationshipType = data.getStringExtra("relationshipType");
                 }
             });
 
