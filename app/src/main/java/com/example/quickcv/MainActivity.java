@@ -3,6 +3,7 @@ package com.example.quickcv;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -48,17 +49,17 @@ public class MainActivity extends AppCompatActivity {
 
         btnSummary.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Summary.class);
-            startActivity(intent);
+            summaryLauncher.launch(intent);
         });
 
         btnEducation.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Education.class);
-            startActivity(intent);
+            educationLauncher.launch(intent);
         });
 
         btnExperience.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Experience.class);
-            startActivity(intent);
+            experienceLauncher.launch(intent);
         });
 
         btnCertifications.setOnClickListener(v -> {
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
 //    Handling/Capture results
 
+    // PersonalDetails Activity Result Launcher
     private final ActivityResultLauncher<Intent> personalDetailsLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
@@ -89,6 +91,47 @@ public class MainActivity extends AppCompatActivity {
                     phone = data.getStringExtra("phone");
                 }
             });
+
+
+    // Summary Activity Result Launcher
+    private final ActivityResultLauncher<Intent> summaryLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    String summary = result.getData().getStringExtra("summary");
+                }
+            });
+
+
+    // Education Activity Result Launcher
+    private final ActivityResultLauncher<Intent> educationLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Intent data = result.getData();
+                    String institution = data.getStringExtra("institution");
+                    String discipline = data.getStringExtra("discipline");
+                    String startYear = data.getStringExtra("startYear");
+                    String endYear = data.getStringExtra("endYear");
+                    String cgpa = data.getStringExtra("cgpa");
+                }
+            });
+
+
+    // Experience Activity Result Launcher
+    private final ActivityResultLauncher<Intent> experienceLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Intent data = result.getData();
+                    String jobTitle = data.getStringExtra("jobTitle");
+                    String companyName = data.getStringExtra("companyName");
+                    String employmentType = data.getStringExtra("employmentType");
+                    String experienceLevel = data.getStringExtra("experienceLevel");
+                    String startDate = data.getStringExtra("startDate");
+                    String endDate = data.getStringExtra("endDate");
+                    String jobDescription = data.getStringExtra("jobDescription");
+
+                }
+            });
+
 
 
     private void init(){
