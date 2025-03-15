@@ -64,12 +64,12 @@ public class MainActivity extends AppCompatActivity {
 
         btnCertifications.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Certifications.class);
-            startActivity(intent);
+            certificationsLauncher.launch(intent);
         });
 
         btnReferences.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, References.class);
-            startActivity(intent);
+            referencesLauncher.launch(intent);
         });
 
         btnViewCV.setOnClickListener(v -> {
@@ -133,7 +133,34 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
+    // Certifications Activity Result Launcher
+    private final ActivityResultLauncher<Intent> certificationsLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Intent data = result.getData();
+                    String certificationName = data.getStringExtra("certificationName");
+                    String issuer = data.getStringExtra("issuer");
+                    String issueDate = data.getStringExtra("issueDate");
+                    String expirationDate = data.getStringExtra("expirationDate");
+                }
+            });
 
+
+    // Reference Activity Result Launcher
+    private final ActivityResultLauncher<Intent> referencesLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Intent data = result.getData();
+                    String referenceName = data.getStringExtra("referenceName");
+                    String designation = data.getStringExtra("designation");
+                    String organization = data.getStringExtra("organization");
+                    String phone = data.getStringExtra("phone");
+                    String relationshipType = data.getStringExtra("relationshipType");
+                }
+            });
+
+
+//    connection with front end in init() method
     private void init(){
         btnProfilePicture = findViewById(R.id.btnProfilePicture);
         btnPersonalDetails = findViewById(R.id.btnPersonalDetails);
