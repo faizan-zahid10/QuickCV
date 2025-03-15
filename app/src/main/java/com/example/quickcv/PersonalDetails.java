@@ -33,7 +33,7 @@ public class PersonalDetails extends AppCompatActivity {
 
         init();
 
-//       Store data and return to Home
+//       Store data and return to Home/MainActivity
         btnSave.setOnClickListener(v -> {
             String name = etName.getText().toString().trim();
             String email = etEmail.getText().toString().trim();
