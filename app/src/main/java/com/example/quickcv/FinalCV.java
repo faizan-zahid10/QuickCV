@@ -1,11 +1,16 @@
 package com.example.quickcv;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -19,6 +24,7 @@ public class FinalCV extends AppCompatActivity {
     private TextView tvCertificationName, tvIssuer, tvIssueDate, tvExpirationDate;
     private TextView tvReferenceName, tvReferenceDesignation, tvReferenceOrganization, tvReferencePhone, tvRelationshipType;
     Button btnShare;
+    private ImageView ivProfilePic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,8 @@ public class FinalCV extends AppCompatActivity {
     }
 
     private void init(){
+        ivProfilePic = findViewById(R.id.ivProfilePic);
+
         tvName = findViewById(R.id.tvName);
         tvEmail = findViewById(R.id.tvEmail);
         tvPhone = findViewById(R.id.tvPhone);
@@ -73,6 +81,20 @@ public class FinalCV extends AppCompatActivity {
 
     // Retrieve and set data directly from Intent
     private void setDataFromIntent() {
+        // Load Profile Picture
+        String imageUri = getIntent().getStringExtra("profilePicUri");
+        if (imageUri != null && !imageUri.isEmpty()) {
+            try {
+                ivProfilePic.setImageURI(Uri.parse(imageUri));
+                Log.d("Image is",imageUri);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
+
         tvName.setText(getIntent().getStringExtra("name"));
         tvEmail.setText(getIntent().getStringExtra("email"));
         tvPhone.setText(getIntent().getStringExtra("phone"));
@@ -105,22 +127,24 @@ public class FinalCV extends AppCompatActivity {
 
     private void shareCV() {
 //        forming the text to share
-        String cvText = "See my CV:\n\n"
-                + "Name: " + ((TextView) findViewById(R.id.tvName)).getText().toString() + "\n"
-                + "Email: " + ((TextView) findViewById(R.id.tvEmail)).getText().toString() + "\n"
-                + "Phone: " + ((TextView) findViewById(R.id.tvPhone)).getText().toString() + "\n"
-                + "Summary: " + ((TextView) findViewById(R.id.tvSummary)).getText().toString() + "\n\n"
-                + "Education: " + ((TextView) findViewById(R.id.tvInstitution)).getText().toString() + "\n"
-                + "Discipline: " + ((TextView) findViewById(R.id.tvDiscipline)).getText().toString() + "\n"
-                + "CGPA: " + ((TextView) findViewById(R.id.tvCGPA)).getText().toString() + "\n\n"
-                + "Experience: " + ((TextView) findViewById(R.id.tvJobTitle)).getText().toString() + " at "
-                + ((TextView) findViewById(R.id.tvCompanyName)).getText().toString();
+        StringBuilder cvText = new StringBuilder();
+        cvText.append("See my CV:\n\n")
+                .append("Name: ").append(tvName.getText().toString()).append("\n")
+                .append("Email: ").append(tvEmail.getText().toString()).append("\n")
+                .append("Phone: ").append(tvPhone.getText().toString()).append("\n")
+                .append("Summary: ").append(tvSummary.getText().toString()).append("\n\n")
+                .append("Education: ").append(tvInstitution.getText().toString()).append("\n")
+                .append("Discipline: ").append(tvDiscipline.getText().toString()).append("\n")
+                .append("CGPA: ").append(tvCGPA.getText().toString()).append("\n\n")
+                .append("Experience: ").append(tvJobTitle.getText().toString()).append(" at ")
+                .append(tvCompanyName.getText().toString());
+
 
 //      intent to share the cv
         Intent sharing = new Intent(Intent.ACTION_SEND);
         sharing.setType("text/plain");
         sharing.putExtra(Intent.EXTRA_SUBJECT, "My CV");
-        sharing.putExtra(Intent.EXTRA_TEXT, cvText);
+        sharing.putExtra(Intent.EXTRA_TEXT, cvText.toString());
 
         startActivity(Intent.createChooser(sharing, "Share CV via"));
     }

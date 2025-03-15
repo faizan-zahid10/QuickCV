@@ -1,21 +1,25 @@
 package com.example.quickcv;
 
+import android.Manifest;
+
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final int PERSONAL_DETAILS_REQUEST = 1;
 
     //    hooks
     private Button btnProfilePicture, btnPersonalDetails, btnSummary, btnEducation, btnExperience, btnCertifications, btnReferences, btnViewCV;
@@ -38,11 +42,23 @@ public class MainActivity extends AppCompatActivity {
     // References
     private String referenceName, designation, organization, referencePhone, relationshipType;
 
+    private ImageView imgProfile;
+    private Uri selectedImageUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES. TIRAMISU) { // Android 13+
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_MEDIA_IMAGES}, 1);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        }
+
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -54,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 //        all action listeners now
         btnProfilePicture.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ProfilePicture.class);
-            startActivity(intent);
+            profilePictureLauncher.launch(intent);
         });
 
         btnPersonalDetails.setOnClickListener(v -> {
@@ -91,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
         btnViewCV.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, FinalCV.class);
 
+            if (selectedImageUri != null) {
+                intent.putExtra("profilePicUri", selectedImageUri.toString());
+            }
+
             // Passing all collected data
             intent.putExtra("name", name);
             intent.putExtra("email", email);
@@ -124,6 +144,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
 //    Handling/Capture results
+
+    // ProfilePic Activity Result Launcher
+    private final ActivityResultLauncher<Intent> profilePictureLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    String imageUriString = result.getData().getStringExtra("profilePicUri");
+                    if (imageUriString != null) { // Prevent parsing null
+                        selectedImageUri = Uri.parse(imageUriString);
+                        if (imgProfile != null) { // Ensure imgProfile is initialized
+                            imgProfile.setImageURI(selectedImageUri);
+                        }
+                    }
+                }
+            });
+
 
     // PersonalDetails Activity Result Launcher
     private final ActivityResultLauncher<Intent> personalDetailsLauncher =
@@ -214,5 +249,7 @@ public class MainActivity extends AppCompatActivity {
         btnCertifications = findViewById(R.id.btnCertifications);
         btnReferences = findViewById(R.id.btnReferences);
         btnViewCV = findViewById(R.id.btnViewCV);
+
+        imgProfile = findViewById(R.id.imgProfile);
     }
 }

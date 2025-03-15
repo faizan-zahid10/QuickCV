@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="15dp">
+
 
         <TextView
             android:id="@+id/tvTitle"
@@ -22,6 +24,16 @@
             android:textStyle="bold"
             android:layout_gravity="center"
             android:paddingBottom="16dp"/>
+
+        <ImageView
+            android:id="@+id/ivProfilePic"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/app_logo"
+            android:layout_marginBottom="5dp">
+        </ImageView>
 
         <!-- Personal Details -->
         <TextView
@@ -104,7 +116,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Share CV"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="5dp"/>
 
 
     </LinearLayout>
